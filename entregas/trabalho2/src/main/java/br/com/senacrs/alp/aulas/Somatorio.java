@@ -23,7 +23,6 @@ public class Somatorio {
 				resultado = valores[i]+resultado;
 			}
 		}
-		int a=0;
 
 		//Implementar
 		
