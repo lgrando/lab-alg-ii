@@ -11,7 +11,7 @@ public class ListaFactory {
 		
 		Lista<T> resultado = null;
 		
-		//implementar
+		//implementar...
 		
 		return resultado;
 	}
