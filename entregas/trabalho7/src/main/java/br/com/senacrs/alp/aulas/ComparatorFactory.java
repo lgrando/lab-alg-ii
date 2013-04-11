@@ -22,7 +22,7 @@ public class ComparatorFactory {
 		
 		Comparator<String> resultado = null;
 		
-		resultado = new MeuComparatorSTRING<String>();
+		//implementar
 		
 		return resultado;
 	}
