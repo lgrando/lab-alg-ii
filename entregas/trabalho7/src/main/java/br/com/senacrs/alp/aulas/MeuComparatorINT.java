@@ -1,10 +1,15 @@
 package br.com.senacrs.alp.aulas;
 
-public class MeuComparatorINT<Integer> implements Comparator<Integer> {
+import java.util.Comparator;
+
+public class MeuComparatorINT<Integer> implements Comparator {
 
 	@Override
-	public int compare(int o1, int o2) {
+	public int compare(Object arg0, Object arg1) {
+	
 		return 0;
-	}
+	}		
+
+	
 
 }
