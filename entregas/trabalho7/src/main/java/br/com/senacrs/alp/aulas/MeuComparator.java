@@ -2,7 +2,7 @@ package br.com.senacrs.alp.aulas;
 
 import java.util.Comparator;
 
-public class MeuComparatorINT<Integer> implements Comparator {
+public class MeuComparator<T> implements Comparator {
 
 	@Override
 	public int compare(Object arg0, Object arg1) {
