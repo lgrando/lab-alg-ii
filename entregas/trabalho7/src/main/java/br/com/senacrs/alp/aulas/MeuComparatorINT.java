@@ -5,10 +5,10 @@ import java.util.Comparator;
 public class MeuComparatorINT implements Comparator<Integer> {
 
 	@Override
-	public int compare(Object arg0, Object arg1) {
-	
+	public int compare(Integer o1, Integer o2) {
+		
 		return 0;
-	}		
+	}
 
 	
 
