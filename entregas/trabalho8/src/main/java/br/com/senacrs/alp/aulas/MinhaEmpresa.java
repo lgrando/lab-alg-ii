@@ -1,7 +1,4 @@
 package br.com.senacrs.alp.aulas;
-import br.com.senacrs.alp.aulas.Departamento;
-import br.com.senacrs.alp.aulas.Empresa;
-import br.com.senacrs.alp.aulas.Funcionario;
 
 import java.util.List;
 
