@@ -11,7 +11,7 @@ public class Factory {
 	
 		Funcionario resultado = null;
 		
-		//implementar
+		resultado = new MeuFuncionario();
 		
 		return resultado;
 	}
@@ -20,7 +20,7 @@ public class Factory {
 	
 		Departamento resultado = null;
 		
-		//implementar
+		resultado = new MeuDepartamento();
 		
 		return resultado;
 	}
@@ -29,7 +29,7 @@ public class Factory {
 	
 		Empresa resultado = null;
 		
-		//implementar
+		resultado = new MinhaEmpresa();
 		
 		return resultado;
 	}
