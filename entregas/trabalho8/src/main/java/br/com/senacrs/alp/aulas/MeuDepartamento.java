@@ -1,9 +1,11 @@
 package br.com.senacrs.alp.aulas;
 
 import java.util.List;
-import java.util.Comparator;
+import java.util.ArrayList;
 
 public class MeuDepartamento implements Departamento {
+	
+	ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
 		
 	private Empresa empresa;
 	private String nome;
@@ -56,7 +58,7 @@ public class MeuDepartamento implements Departamento {
 		if(funcionario == null){
 			throw new IllegalArgumentException();
 		}
-	
+		lista.add(funcionario);
 	}
 
 }

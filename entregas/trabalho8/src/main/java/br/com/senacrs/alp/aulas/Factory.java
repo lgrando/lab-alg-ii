@@ -11,9 +11,13 @@ public class Factory {
 	
 	public Funcionario criarFuncionario(Departamento departamento, String nome, double salario) {
 	
+		if(departamento == null){
+			throw new IllegalArgumentException();
+		}
+		
 		Funcionario resultado = null;
 		
-		resultado = new MeuFuncionario(null, departamento, nome, salario);
+		resultado = new MeuFuncionario(departamento.getEmpresa(), departamento, nome, salario);
 		
 		return resultado;
 	}
