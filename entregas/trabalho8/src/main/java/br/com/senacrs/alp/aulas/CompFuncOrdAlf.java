@@ -5,9 +5,9 @@ import java.util.Comparator;
 public class CompFuncOrdAlf implements Comparator<Funcionario>{
 
 	@Override
-	public int compare(Funcionario o1, Funcionario o2) {
+	public int compare(Funcionario f1, Funcionario f2) {
 		
-		return 0;
+		return f1.getNome().compareTo(f2.getNome());
 	}
 
 }
