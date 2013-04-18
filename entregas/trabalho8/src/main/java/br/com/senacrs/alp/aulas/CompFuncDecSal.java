@@ -5,9 +5,19 @@ import java.util.Comparator;
 public class CompFuncDecSal implements Comparator<Funcionario> {
 
 	@Override
-	public int compare(Funcionario o1, Funcionario o2) {
+	public int compare(Funcionario sal1, Funcionario sal2) {
 		
-		return 0;
+		int resultado = 0;
+		
+		if(sal1.getSalario() < sal2.getSalario()){
+			resultado = 1;
+		} else if (sal1.getSalario() > sal2.getSalario()){
+			resultado = -1;
+		} else {
+			resultado = 0;
+		}
+		
+		return resultado;
 	}
 
 }

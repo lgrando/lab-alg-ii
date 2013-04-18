@@ -46,7 +46,9 @@ public class MeuDepartamento implements Departamento {
 	@Override
 	public List<Funcionario> listarFuncionariosPorDecrescenteSalario() {
 		
-		return null;
+		CompFuncDecSal cfds = new CompFuncDecSal();
+		Collections.sort(lista, cfds);
+		return lista;
 	}
 
 	@Override
