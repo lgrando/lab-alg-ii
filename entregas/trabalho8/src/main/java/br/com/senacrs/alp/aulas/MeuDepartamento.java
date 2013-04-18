@@ -49,7 +49,7 @@ public class MeuDepartamento implements Departamento {
 	@Override
 	public int quantidadeFuncionarios() {
 		
-		return 0;
+		return lista.size();
 	}
 
 	@Override
