@@ -1,8 +1,11 @@
 package br.com.senacrs.alp.aulas;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class MinhaEmpresa implements Empresa {
+	
+	ArrayList<Departamento> lista = new ArrayList<Departamento>();
 	
 	private String nome;
 	
@@ -32,7 +35,7 @@ public class MinhaEmpresa implements Empresa {
 		if(departamento == null){
 			throw new IllegalArgumentException();
 		}
-		
+		lista.add(departamento);
 				
 	}
 
