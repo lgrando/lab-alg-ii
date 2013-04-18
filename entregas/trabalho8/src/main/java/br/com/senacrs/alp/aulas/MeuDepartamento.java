@@ -1,19 +1,35 @@
 package br.com.senacrs.alp.aulas;
 
 import java.util.List;
+import java.util.Comparator;
 
 public class MeuDepartamento implements Departamento {
-
+		
+	private Empresa empresa;
+	private String nome;
+	
+	public MeuDepartamento(Empresa empresa, String nome){
+		
+		if(nome == null){
+			throw new IllegalArgumentException();
+		}
+		if(empresa == null){
+			throw new IllegalArgumentException();
+		}
+		this.nome = nome;
+		this.empresa = empresa;
+	}
+	
 	@Override
 	public Empresa getEmpresa() {
 		
-		return null;
+		return this.empresa;
 	}
 
 	@Override
 	public String getNome() {
 		
-		return null;
+		return this.nome;
 	}
 
 	@Override
@@ -37,7 +53,10 @@ public class MeuDepartamento implements Departamento {
 	@Override
 	public void adicionarFuncionario(Funcionario funcionario) {
 		
-		
+		if(funcionario == null){
+			throw new IllegalArgumentException();
+		}
+	
 	}
 
 }

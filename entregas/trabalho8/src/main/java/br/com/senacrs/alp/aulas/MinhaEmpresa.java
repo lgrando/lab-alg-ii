@@ -3,11 +3,21 @@ package br.com.senacrs.alp.aulas;
 import java.util.List;
 
 public class MinhaEmpresa implements Empresa {
-
+	
+	private String nome;
+	
+	public MinhaEmpresa(String nome){
+		
+		if(nome == null){
+			throw new IllegalArgumentException();
+		}
+		this.nome = nome;
+	}
+	
 	@Override
 	public String getNome() {
 		
-		return null;
+		return this.nome;
 	}
 
 	@Override
@@ -19,7 +29,11 @@ public class MinhaEmpresa implements Empresa {
 	@Override
 	public void adicionarDepartamento(Departamento departamento) {
 		
+		if(departamento == null){
+			throw new IllegalArgumentException();
+		}
 		
+				
 	}
 
 	@Override
