@@ -2,6 +2,7 @@ package br.com.senacrs.alp.aulas;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MinhaEmpresa implements Empresa {
 	
@@ -42,7 +43,13 @@ public class MinhaEmpresa implements Empresa {
 	@Override
 	public int quantidadeFuncionarios() {
 		
-		return 0;
+		int i = 0;
+		int soma = 0;
+		while(i < lista.size()){
+			soma += lista.get(i).quantidadeFuncionarios();
+			i++;
+		}
+		return soma;
 	}
 
 }

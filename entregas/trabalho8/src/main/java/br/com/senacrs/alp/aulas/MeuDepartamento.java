@@ -2,6 +2,7 @@ package br.com.senacrs.alp.aulas;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MeuDepartamento implements Departamento {
 	
