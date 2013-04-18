@@ -5,9 +5,18 @@ import java.util.Comparator;
 public class CompDptoFuncCre implements Comparator<Departamento> {
 
 	@Override
-	public int compare(Departamento arg0, Departamento arg1) {
+	public int compare(Departamento dp1, Departamento dp2) {
 		
-		return 0;
+		int resultado = 0;
+		
+		if(dp1.quantidadeFuncionarios() < dp2.quantidadeFuncionarios()){
+			resultado = 1;
+		} else if(dp1.quantidadeFuncionarios() > dp2.quantidadeFuncionarios()){
+			resultado = -1;
+		} else {
+			resultado = 0;
+		}
+		return resultado;
 	}
 
 }
