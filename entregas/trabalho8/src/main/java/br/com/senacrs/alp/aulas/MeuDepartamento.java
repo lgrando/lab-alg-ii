@@ -38,7 +38,9 @@ public class MeuDepartamento implements Departamento {
 	@Override
 	public List<Funcionario> listarFuncionariosPorOrdemAlfabetica() {
 		
-		return null;
+		CompFuncOrdAlf cfoa = new CompFuncOrdAlf();
+		Collections.sort(lista, cfoa);
+		return lista;
 	}
 
 	@Override
