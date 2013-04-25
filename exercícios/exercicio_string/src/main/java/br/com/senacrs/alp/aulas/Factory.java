@@ -11,7 +11,7 @@ public class Factory {
 	
 		InterpretadorStrings resultado = null;
 		
-		//implementar
+		resultado = new MeuInterpretador();
 		
 		return resultado;
 	}

@@ -66,6 +66,9 @@ public class MeuLeitor implements LeitorArquivos {
 		if(arquivo == null){
 			throw new IllegalArgumentException();
 		}
+		if(arquivo.isEmpty()){
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public String[] lerBufferedReader (BufferedReader leitor){
@@ -81,8 +84,9 @@ public class MeuLeitor implements LeitorArquivos {
 			while (linha != null) {
 			 	lista.add(linha);
 			 	linha = leitor.readLine();
-			 	}
-		} catch (IOException e) {
+			}
+			resultado = converterListaArray(lista);
+		} catch (IOException ioe) {
 			throw new IllegalStateException();			
 		}
 	 	return resultado;
@@ -91,19 +95,26 @@ public class MeuLeitor implements LeitorArquivos {
 	private String[] converterListaArray (List<String> lista){
 		
 		String[] resultado = null;
-		int ndx = 0;
-		
 		resultado = new String[lista.size()];
-		for(String s : lista){
-			resultado[ndx] = s;
-			ndx++;
-		}
+		resultado = lista.toArray(resultado);
 		return resultado;
+		
 	}
 	
 	@Override
 	public String[] lerArquivoComSubstituicao(String arquivo, String busca,	String substituicao) {
 		
-		return null;
+		String[] resultado = null;
+		String[] parcial = null;
+		String linha = null;
+		
+		parcial = lerArquivo(arquivo);
+		resultado = new String[parcial.length];
+		for(int i = 0 ; i< parcial.length ; i++){
+			linha = parcial[i];
+			resultado[i] = linha.replace(busca, substituicao);
+		}
+		
+		return resultado;
 	}
 }

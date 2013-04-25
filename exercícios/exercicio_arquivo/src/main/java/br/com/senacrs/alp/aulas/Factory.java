@@ -11,7 +11,7 @@ public class Factory {
 	
 		LeitorArquivos resultado = null;
 		
-		//implementar
+		resultado = new MeuLeitor();
 		
 		return resultado;
 	}
