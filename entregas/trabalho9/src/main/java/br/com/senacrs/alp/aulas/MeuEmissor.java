@@ -13,7 +13,8 @@ public class MeuEmissor implements EmissorMensagens {
 		this.arquivoEntrada = arquivoEntrada;
 		File f = obterFileLeitura(arquivoEntrada);
 		verificarFormato(f);
-	}	
+	}
+	
 	
 	private void verificarFile(File file) {
 		if(file == null) {
@@ -57,7 +58,9 @@ public class MeuEmissor implements EmissorMensagens {
 		}
 		
 		return resultado;
-	}	
+	}
+
+	
 	
 	@Override
 	public String formatarMensagem(String chave, Object... msg) {
@@ -74,7 +77,6 @@ public class MeuEmissor implements EmissorMensagens {
 			while( (linha = br.readLine()) != null) {
 			
 				String l[] = linha.split("=");
-				
 				if(l[0].trim().equals(chave)) {
 					retorno = String.format(l[1].trim(), msg);
 					possui = true;
@@ -86,7 +88,7 @@ public class MeuEmissor implements EmissorMensagens {
 				throw new IllegalArgumentException();
 				
 			}
-				
+			
 			fr.close();
 			br.close();
 		
