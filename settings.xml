@@ -110,7 +110,7 @@ under the License.
       <username>proxyuser</username>
       <password>proxypass</password>
 	  -->
-      <host>192.168.0.1</host>
+      <host>192.168.0.2</host>
       <port>8080</port>
     </proxy>
   </proxies>
