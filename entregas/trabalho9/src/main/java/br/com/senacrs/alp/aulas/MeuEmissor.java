@@ -41,6 +41,9 @@ public class MeuEmissor implements EmissorMensagens {
 			
 			if(a.length != 2)
 				throw new IllegalArgumentException();
+			
+			fr.close();
+			br.close();
 
 		} catch(IOException ex){
 			ex.printStackTrace();
@@ -65,7 +68,7 @@ public class MeuEmissor implements EmissorMensagens {
 	@Override
 	public String formatarMensagem(String chave, Object... msg) {
 		
-		String retorno = null;
+		String resultado = null;
 		
 		try{
 			
@@ -75,18 +78,16 @@ public class MeuEmissor implements EmissorMensagens {
 			boolean possui = false; 
 			String linha;
 			while( (linha = br.readLine()) != null) {
-			
+				
 				String l[] = linha.split("=");
 				if(l[0].trim().equals(chave)) {
-					retorno = String.format(l[1].trim(), msg);
+					resultado = String.format(l[1].trim(), msg);
 					possui = true;
-				} 
-				
+				} 				
 			}
 			
 			if(possui == false) {
-				throw new IllegalArgumentException();
-				
+				throw new IllegalArgumentException();				
 			}
 			
 			fr.close();
@@ -96,7 +97,7 @@ public class MeuEmissor implements EmissorMensagens {
 			ex.printStackTrace();
 		}
 		
-		return  retorno;
+		return resultado;
 	}
 
 }
