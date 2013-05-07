@@ -20,15 +20,12 @@ public class MinhaLista implements ListaConteudoDiretorio {
 				
 			// verifica os arquivos
 			for (String r : resultado) {
-				System.out.print("=> " + r + " - ");
-				
+
 				File f = new File(diretorio + "/" + r);
 				if(f.isFile()) {
 					listaA.add(r);
-					System.out.println("Arquivo");
 				} else {
 					listaD.add(r);
-					System.out.println("Diretório");
 				}	
 			}
 
@@ -39,20 +36,18 @@ public class MinhaLista implements ListaConteudoDiretorio {
 			String nova[] = new String[resultado.length];
 			String n = "";
 			
-			System.out.println("\nORDENADOS");
+			//System.out.println("\nORDENADOS");
 			int i = 0;
 			for (String r : listaD) {
 				
 				// cria um arquivo a partir do valor obtido
 				File f = new File(diretorio + "/" + r);
-				
+								
 				// faz as verificações
 				n = verificaFormato(f) + " " + verificaPermissoes(f) + " " + f.length() + " " + f.getName(); 
 				
 				// adicionar no novo array
-				nova[i] = n;
-				
-				System.out.println("=>" + n);
+				nova[i] = n;		
 				
 				i++;
 			}
@@ -66,14 +61,11 @@ public class MinhaLista implements ListaConteudoDiretorio {
 				n = verificaFormato(f) + " " + verificaPermissoes(f) + " " + f.length() + " " + f.getName(); 
 				
 				// adicionar no novo array
-				nova[i] = n;
-				
-				System.out.println("=>" + n);
-				
+				nova[i] = n;			
+							
 				i++;
 			}
-			
-	        
+				        
 		return nova;
 
 			
@@ -87,8 +79,8 @@ public class MinhaLista implements ListaConteudoDiretorio {
 		if(f.isFile())
 			n = "-"; 
 		else
-			n = "d";
-		
+			n = "d";		
+	
 		return n;
 	}
 	

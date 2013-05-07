@@ -138,7 +138,7 @@ public class ListaConteudoDiretorioTest {
 		
 		exception.expect(IllegalArgumentException.class);
 		dir = criarSubDiretorio();
-		if (dir.setReadable(false)) {
+		if (!dir.setReadable(false)) {
 			throw new IllegalArgumentException();
 		}
 		obj.listarConteudo(dir);
@@ -206,11 +206,9 @@ public class ListaConteudoDiretorioTest {
 		boolean canSetExecutable = false;
 		
 		arq = criarSubDiretorio();
-		arq.setReadable(false);
-		arq.setWritable(true);
 		canSetExecutable = arq.setExecutable(false);
 		esperado = "" + ListaConteudoDiretorio.IDENTIFICA_DIRETORIO + ListaConteudoDiretorio.SEPARADOR
-				+ ListaConteudoDiretorio.NADA_CONSTA 
+				+ ListaConteudoDiretorio.PERMISSAO_LEITURA
 				+ ListaConteudoDiretorio.PERMISSAO_ESCRITA
 				+ (canSetExecutable ? ListaConteudoDiretorio.NADA_CONSTA : ListaConteudoDiretorio.PERMISSAO_EXECUCAO) + ListaConteudoDiretorio.SEPARADOR
 				+ arq.length() + ListaConteudoDiretorio.SEPARADOR
