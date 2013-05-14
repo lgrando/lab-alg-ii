@@ -15,19 +15,23 @@ public class MinhaLista implements ListaConteudoDiretorio {
 		ArrayList<String> listaA = new ArrayList<String>();
 		
 			verificaDiretorio(diretorio);
+						
+			resultado = diretorio.list();			
 			
-			resultado = diretorio.list();
+			if(resultado == null){
+				throw new IllegalArgumentException();
+			}
 				
-			// verifica os arquivos
 			for (String r : resultado) {
-
+				
 				File f = new File(diretorio + "/" + r);
 				if(f.isFile()) {
-					listaA.add(r);
+					listaA.add(r);					
 				} else {
-					listaD.add(r);
-				}	
-			}
+					listaD.add(r);					
+				}
+				
+			}			
 
 			ComparadorLista cl = new ComparadorLista();
 			Collections.sort(listaA, cl);
@@ -36,33 +40,26 @@ public class MinhaLista implements ListaConteudoDiretorio {
 			String nova[] = new String[resultado.length];
 			String n = "";
 			
-			//System.out.println("\nORDENADOS");
 			int i = 0;
 			for (String r : listaD) {
 				
-				// cria um arquivo a partir do valor obtido
 				File f = new File(diretorio + "/" + r);
 								
-				// faz as verificações
-				n = verificaFormato(f) + " " + verificaPermissoes(f) + " " + f.length() + " " + f.getName(); 
+				n = verificaFormato(f) + SEPARADOR + verificaPermissoes(f) + SEPARADOR + f.length() + SEPARADOR + f.getName(); 
 				
-				// adicionar no novo array
 				nova[i] = n;		
 				
 				i++;
-			}
+			}			
 			
 			for (String r : listaA) {
 				
-				// cria um arquivo a partir do valor obtido
 				File f = new File(diretorio + "/" + r);
 				
-				// faz as verificações
-				n = verificaFormato(f) + " " + verificaPermissoes(f) + " " + f.length() + " " + f.getName(); 
+				n = verificaFormato(f) + SEPARADOR + verificaPermissoes(f) + SEPARADOR + f.length() + SEPARADOR + f.getName(); 
 				
-				// adicionar no novo array
-				nova[i] = n;			
-							
+				nova[i] = n;
+				
 				i++;
 			}
 				        
@@ -74,12 +71,12 @@ public class MinhaLista implements ListaConteudoDiretorio {
 	
 	public static String verificaFormato(File f) {
 		
-		String n;
+		String n = "";
 			
 		if(f.isFile())
-			n = "-"; 
+			n += NADA_CONSTA; 
 		else
-			n = "d";		
+			n += IDENTIFICA_DIRETORIO;		
 	
 		return n;
 	}
@@ -89,19 +86,19 @@ public class MinhaLista implements ListaConteudoDiretorio {
 		String retorno = "";
 		
 		if(f.canRead()) 
-			retorno += "r";
+			retorno += PERMISSAO_LEITURA;
 		else
-			retorno += "-";
+			retorno += NADA_CONSTA;
 		
 		if(f.canWrite()) 
-			retorno += "w";
+			retorno += PERMISSAO_ESCRITA;
 		else
-			retorno += "-";
+			retorno += NADA_CONSTA;
 		
 		if(f.canExecute()) 
-			retorno += "x";
+			retorno += PERMISSAO_EXECUCAO;
 		else
-			retorno += "-";
+			retorno += NADA_CONSTA;
 		
 		return retorno;
 		
@@ -109,23 +106,18 @@ public class MinhaLista implements ListaConteudoDiretorio {
 	
 	private void verificaDiretorio (File diretorio) {
 		
-		// verifica se o valor passado por parâmetro é null
 		if(diretorio == null)
-			throw new IllegalArgumentException();
-				
-		// verifica se pode realizar leitura
+			throw new IllegalArgumentException();				
+		
 		if(!diretorio.canRead())
-			throw new IllegalArgumentException();
-					
-		// verifica se pode realizar execução
+			throw new IllegalArgumentException();					
+	
 		if(!diretorio.canExecute())
-			throw new IllegalArgumentException();
-					
-		// verifica se pode realizar escrita
+			throw new IllegalArgumentException();					
+		
 		if(!diretorio.canWrite())
-			throw new IllegalArgumentException();
-								
-		// verifica se existe
+			throw new IllegalArgumentException();								
+		
 		if(!diretorio.exists())
 			throw new IllegalArgumentException();
 	}
