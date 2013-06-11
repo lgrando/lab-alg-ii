@@ -11,7 +11,7 @@ public class Factory {
 	
 		Configuracao resultado = null;
 		
-		//implementar
+		resultado = new MeuArquivo(config);
 		
 		return resultado;
 	}
