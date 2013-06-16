@@ -4,6 +4,9 @@ public class MeuArquivoConf implements Configuracao {
 	private ArquivoConfiguracao config;
 
 	public MeuArquivoConf(ArquivoConfiguracao config) {
+		if(config==null){
+			throw new IllegalArgumentException();
+		}
 		this.config = config;
 	}
 
