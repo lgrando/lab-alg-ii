@@ -1,13 +1,18 @@
 package br.com.senacrs.alp.aulas;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.TimeZone;
@@ -20,7 +25,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class ObterCabecalhoRequisicaoGetTest {
+public class ObterRequisicaoGetTest {
 
 	private static final String HTTP_1_0_200_OK = "HTTP/1.0 200 OK";
 	private static final String HTTP_1_0_404_NOT_FOUND = "HTTP/1.0 404 NotFound";
@@ -88,7 +93,7 @@ public class ObterCabecalhoRequisicaoGetTest {
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
 	private ArquivoConfiguracao config = null;
-	private ObterCabecalhoRequisicaoGet obj = null;
+	private ObterRequisicaoGet obj = null;
 	private File error404 = null;
 	private File index = null;
 
@@ -211,8 +216,8 @@ public class ObterCabecalhoRequisicaoGetTest {
 		
 		path = obterNomeAleatorio(DIR_SEP);
 		requisicao = obterRequisicao(path);
-		resultado = obj.obterCabecalhoResposta(requisicao);
-		esperado = obterHeader(HTTP_1_0_404_NOT_FOUND, error404);
+		resultado = obj.obterResposta(requisicao);
+		esperado = obterResposta(HTTP_1_0_404_NOT_FOUND, error404);
 		Assert.assertNotNull(resultado);
 		Assert.assertArrayEquals(esperado, resultado);
 	}
@@ -225,27 +230,35 @@ public class ObterCabecalhoRequisicaoGetTest {
 
 		builder = new StringBuilder();
 		builder.append("GET " + path + " http/1.1");
-		builder.append(ObterCabecalhoRequisicaoGet.NOVA_LINHA);
+		builder.append(ObterRequisicaoGet.NOVA_LINHA);
 		builder.append("Host: www.google.com");
-		builder.append(ObterCabecalhoRequisicaoGet.NOVA_LINHA);
+		builder.append(ObterRequisicaoGet.NOVA_LINHA);
 		sequencia = builder.toString();
 		resultado = new StringReader(sequencia);
 
 		return resultado;
 	}
 
-	private String[] obterHeader(String resposta, File file) {
+	private String[] obterResposta(String resposta, File file) throws IOException {
 		
 		String[] resultado = null;
+		List<String> parcial = null;
+		List<String> conteudo = null;
 		
 		resultado = new String[6];
-		resultado[0] = resposta + ObterCabecalhoRequisicaoGet.NOVA_LINHA;
-		resultado[1] = "Date: " + obterDataFormatada() + ObterCabecalhoRequisicaoGet.NOVA_LINHA;
-		resultado[2] = "Server: " + ObterCabecalhoRequisicaoGet.SERVER + ObterCabecalhoRequisicaoGet.NOVA_LINHA;
-		resultado[3] = "Content-Length: " + file.length() + ObterCabecalhoRequisicaoGet.NOVA_LINHA;
-		resultado[4] = "Content-Type: text/html; charset=utf-8" + ObterCabecalhoRequisicaoGet.NOVA_LINHA;
-		resultado[5] = "Connection: close" + ObterCabecalhoRequisicaoGet.NOVA_LINHA;
-
+		parcial = new ArrayList<String>();
+		parcial.add(resposta + ObterRequisicaoGet.NOVA_LINHA);
+		parcial.add("Date: " + obterDataFormatada() + ObterRequisicaoGet.NOVA_LINHA);
+		parcial.add("Server: " + ObterRequisicaoGet.SERVER + ObterRequisicaoGet.NOVA_LINHA);
+		parcial.add("Content-Length: " + file.length() + ObterRequisicaoGet.NOVA_LINHA);
+		parcial.add("Content-Type: text/html; charset=utf-8" + ObterRequisicaoGet.NOVA_LINHA);
+		parcial.add("Connection: close" + ObterRequisicaoGet.NOVA_LINHA);
+		parcial.add(ObterRequisicaoGet.NOVA_LINHA);
+		conteudo = lerFile(file);
+		parcial.addAll(conteudo);
+		resultado = new String[parcial.size()];
+		resultado = parcial.toArray(resultado);
+		
 		return resultado;
 	}
 
@@ -258,11 +271,29 @@ public class ObterCabecalhoRequisicaoGetTest {
 	            "EEE, dd MMM yyyy HH:mm:ss z",
 	            Locale.getDefault());
 	    formatador.setTimeZone(TimeZone.getTimeZone("GMT"));
-	    resultado = formatador.format(ObterCabecalhoRequisicaoGet.DATE);
+	    resultado = formatador.format(ObterRequisicaoGet.DATE);
 
 		return resultado;
 	}
 	
+	private List<String> lerFile(File file) throws IOException {
+		
+		List<String> resultado = null;
+		Reader in = null;
+		BufferedReader reader = null;
+		String linha = null;
+		
+		resultado = new ArrayList<String>();
+		in = new FileReader(file);
+		reader = new BufferedReader(in);
+		while ((linha = reader.readLine()) != null) {
+			resultado.add(linha);
+		}
+		reader.close();
+
+		return resultado;
+	}
+
 	@Test
 	public void testRequisicaoBarra() throws Exception {
 		
@@ -273,8 +304,8 @@ public class ObterCabecalhoRequisicaoGetTest {
 		
 		path = DIR_SEP;
 		requisicao = obterRequisicao(path);
-		resultado = obj.obterCabecalhoResposta(requisicao);
-		esperado = obterHeader(HTTP_1_0_200_OK, index);
+		resultado = obj.obterResposta(requisicao);
+		esperado = obterResposta(HTTP_1_0_200_OK, index);
 		Assert.assertArrayEquals(esperado, resultado);
 		Assert.assertNotNull(resultado);
 	}
@@ -298,8 +329,8 @@ public class ObterCabecalhoRequisicaoGetTest {
 		algo = criarArquivo(dirPai, arq);
 		path = DIR_SEP + dir + DIR_SEP + arq;
 		requisicao = obterRequisicao(path);
-		resultado = obj.obterCabecalhoResposta(requisicao);
-		esperado = obterHeader(HTTP_1_0_200_OK, algo);
+		resultado = obj.obterResposta(requisicao);
+		esperado = obterResposta(HTTP_1_0_200_OK, algo);
 		Assert.assertArrayEquals(esperado, resultado);
 		Assert.assertNotNull(resultado);
 	}
