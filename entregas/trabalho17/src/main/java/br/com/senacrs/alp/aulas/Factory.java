@@ -22,7 +22,7 @@ public class Factory {
 		
 		ArquivoConfiguracao resultado = null;
 		
-		//implementar
+		resultado = new zArquivoConfiguracao(arquivoConfiguracao);
 		
 		return resultado;
 	}
@@ -31,7 +31,7 @@ public class Factory {
 	
 		ResponderRequisicaoGet resultado = null;
 		
-		//implementar
+		resultado = new zResponderRequisicaoGet(config);
 		
 		return resultado;
 	}
