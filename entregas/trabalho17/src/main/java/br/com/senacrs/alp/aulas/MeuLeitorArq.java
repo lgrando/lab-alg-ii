@@ -9,7 +9,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class zLeitorArquivos implements LeitorArquivos {
+public class MeuLeitorArq implements LeitorArquivos {
 
 	@Override
 	public String[] lerArquivo(String arquivo) {

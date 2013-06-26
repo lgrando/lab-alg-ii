@@ -5,7 +5,7 @@ import java.util.Hashtable;
 
 import br.com.senacrs.alp.aulas.InterpretadorStrings.TIPO_STRING;
 
-public class zArquivoConfiguracao implements ArquivoConfiguracao {
+public class MeuArqConf implements ArquivoConfiguracao {
 
 	private static final String SUSTENIDO = "#";
 	private static final String IGUAL = "=";
@@ -15,7 +15,7 @@ public class zArquivoConfiguracao implements ArquivoConfiguracao {
 	
 	private Hashtable<String, String> dicionario;
 
-	zArquivoConfiguracao(String arquivoEntrada) {
+	MeuArqConf(String arquivoEntrada) {
 		if (arquivoEntrada == null) {
 			throw new IllegalArgumentException(
 					"O nome do arquivo não pode ser nulo.");
@@ -30,7 +30,7 @@ public class zArquivoConfiguracao implements ArquivoConfiguracao {
 
 		dicionario = new Hashtable<String, String>();
 
-		LeitorArquivos leitorArqivo = new zLeitorArquivos();
+		LeitorArquivos leitorArqivo = new MeuLeitorArq();
 		String[] chaves = null;
 
 		try {
@@ -44,7 +44,7 @@ public class zArquivoConfiguracao implements ArquivoConfiguracao {
 		if (chaves == null || chaves.length <= 0)
 			throw new IllegalArgumentException("Arquivo vazio ou inexistente");
 
-		InterpretadorStrings validador = new zInterpretadorStrings();
+		InterpretadorStrings validador = new MeuInterpretador();
 
 		for (int i = 0; i < chaves.length; i++) {
 			if (!chaves[i].trim().equals("")) {

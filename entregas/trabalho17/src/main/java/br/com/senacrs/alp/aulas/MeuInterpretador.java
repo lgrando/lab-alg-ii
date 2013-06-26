@@ -1,6 +1,6 @@
 package br.com.senacrs.alp.aulas;
 
-public class zInterpretadorStrings implements InterpretadorStrings {
+public class MeuInterpretador implements InterpretadorStrings {
 
 	private static final String SUSTENIDO = "#";
 	private static final String IGUAL = "=";

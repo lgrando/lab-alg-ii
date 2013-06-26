@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class zResponderRequisicaoGet implements ResponderRequisicaoGet {
+public class MinhaRequisicaoGet implements ResponderRequisicaoGet {
 
 	ArquivoConfiguracao config;
 
@@ -28,7 +28,7 @@ public class zResponderRequisicaoGet implements ResponderRequisicaoGet {
 			+ NOVA_LINHA + "Content-Type: text/html; charset=utf-8"
 			+ NOVA_LINHA + "Connection: close" + NOVA_LINHA;
 
-	zResponderRequisicaoGet(ArquivoConfiguracao config) {
+	MinhaRequisicaoGet(ArquivoConfiguracao config) {
 		this.config = config;
 	}
 
